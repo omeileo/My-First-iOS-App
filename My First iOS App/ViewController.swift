@@ -20,7 +20,7 @@ class ViewController: UIViewController
         
         if tap_count >= 10
         {
-            label_name.text = "You've unlocked the annoying award! Woo."
+            label_name.text = "Congrats! You've unlucked the annoying award. Woo."
         }
     }
     
