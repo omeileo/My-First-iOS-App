@@ -10,36 +10,81 @@ import UIKit
 
 class ViewController: UIViewController
 {
-    @IBOutlet weak var label_name: UILabel!
-    var tap_count = 0
-    
-    @IBAction func button_changeName(_ sender: Any)
-    {
-        label_name.text = "Jase-Omeileo West"
-        tap_count += 1
-        
-        if tap_count >= 10
-        {
-            label_name.text = "You've unlocked the annoying award! Woo."
-        }
-    }
-    
-    @IBAction func button_changeName2(_ sender: Any)
-    {
-        label_name.text = "Buttons are cool!"
-    }
+    @IBOutlet weak var firstOperand: UITextField!
+    @IBOutlet weak var secondOperand: UITextField!
+    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var operatorLabel: UILabel!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        resultLabel.alpha = 0.5
+        warningLabel.isHidden = true
+        firstOperand.text = nil
+        secondOperand.text = nil
     }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func addOperands()
+    {
+        operatorLabel.text = "+"
+        
+        if firstOperand.text != nil && secondOperand.text != nil
+        {
+            resultLabel.alpha = 1.0
+            resultLabel.text = "\(Int(firstOperand.text!)! + Int(secondOperand.text!)!)"
+            
+            if warningLabel.text != nil
+            {
+                warningLabel.isHidden = true
+                warningLabel.text = nil
+            }
+        }
+        else if (firstOperand.text == nil && secondOperand.text != nil) || (firstOperand.text != nil && secondOperand.text == nil)
+        {
+            warningLabel.isHidden = false
+            warningLabel.text = "Add another operand."
+        }
+        else
+        {
+            warningLabel.isHidden = false
+            warningLabel.text = "What do you want to add?"
+        }
+    }
+    
+    @IBAction func subtractOperands()
+    {
+        operatorLabel.text = "-"
+        
+        if firstOperand.text != nil && secondOperand.text != nil
+        {
+            resultLabel.alpha = 1.0
+
+            resultLabel.text = "\(Int(firstOperand.text!)! - Int(secondOperand.text!)!)"
+            
+            if warningLabel.text != nil
+            {
+                warningLabel.isHidden = true
+                warningLabel.text = nil
+            }
+        }
+        else if (firstOperand.text == nil && secondOperand.text != nil) || (firstOperand.text != nil && secondOperand.text == nil)
+        {
+            warningLabel.isHidden = false
+            warningLabel.text = "Add another operand."
+        }
+        else
+        {
+            warningLabel.isHidden = false
+            warningLabel.text = "What do you want to add?"
+        }
     }
 }
 
